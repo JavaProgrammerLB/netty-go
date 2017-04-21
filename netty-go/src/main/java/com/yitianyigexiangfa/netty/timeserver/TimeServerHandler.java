@@ -25,24 +25,12 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 		ByteBuf time = ctx.alloc().buffer(4);
 		time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
 		ChannelFuture f = ctx.writeAndFlush(time);
-
-		// Date now = new Date();
-		// String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now);
-		// System.out.println("现在的时间是：" + nowTime);
-		// ByteBuf time = ctx.alloc().buffer(128);
-		// char[] timeAry = nowTime.toCharArray();
-		// byte[] timeByteAry = new byte[timeAry.length];
-		// for (int i = 0; i < timeAry.length; i++) {
-		// timeByteAry[i] = (byte) timeAry[i];
-		// }
-		// time.getBytes(0, timeByteAry);
-		// ChannelFuture f = ctx.writeAndFlush(time);
 		f.addListener(new ChannelFutureListener() {
 
 			@Override
 			public void operationComplete(ChannelFuture future) throws Exception {
 				assert f == future;
-				// ctx.close();
+				ctx.close();
 			}
 		});
 	}
@@ -52,15 +40,4 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 		cause.printStackTrace();
 		ctx.close();
 	}
-
-	// @Override
-	// public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-	// ByteBuf in = (ByteBuf) msg;
-	// // while (in.isReadable()) {
-	// // System.out.println((char) in.readByte());
-	// // System.out.flush();
-	// // }
-	// ctx.write(msg);
-	// ctx.flush();
-	// }
 }
