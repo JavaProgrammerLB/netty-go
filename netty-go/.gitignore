@@ -1,0 +1,26 @@
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#Eclipse
+.classpath
+.project
+.settings/
+.metadata
+RemoteSystemsTempFiles
+.recommenders
+
+#Maven
+log/
+target/
+
+#Mac
+.DS_Store
+
+#tomcat
+Servers
+服务器
+
+#webapp
+Sentry/src/main/webapp/META-INF/*
